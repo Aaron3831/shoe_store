@@ -15,7 +15,7 @@ get ('/shoes') do
 end
 
 post ('/shoes') do
-  shoe_name = params.fetch('shoe_id')
+  shoe_name = params.fetch('shoe_name')
   @shoes = Shoe.create({:brand => shoe_name})
   @prices = Price.all()
   redirect("/shoes")

@@ -1,10 +1,12 @@
 class Shoe < ActiveRecord::Base
-  validates(:title, {:presence => true, :length => { :maximum => 100 }})
-
   has_many :costs
   has_many :franchises
   has_many :prices, through: :costs
   has_many :stores, through: :franchises
+
+  validates(:brand, {:presence => true, :length => { :maximum => 100 }})
+
+  before_save(:capitalize_brand)
 
   scope(:not_done, -> do
     where({:done => false})

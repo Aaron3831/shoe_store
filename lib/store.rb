@@ -3,5 +3,13 @@ class Store < ActiveRecord::Base
   has_many :franchises
   has_many :shoes, through: :franchises
 
-  DB.exec("DELETE FROM stores WHERE id = #{self.id()};")
+  scope(:not_done, -> do
+    where({:done => false})
+  end)
+
+  private
+
+  define_method(:capitalize_title) do
+    self.title=(title().capitalize())
+  end
 end

@@ -1,0 +1,29 @@
+<h2>Shoes</h2>
+<hr>
+<br>
+
+<% if @shoes == [] %>
+
+<p>There are currently no shoes in the database</p>
+
+<% else %>
+
+<p>Current Shoes</p>
+<ul>
+
+  <% @shoes.each() do |shoe| %>
+
+  <li><a href="/shoes/<%= shoe.id() %>"><%= shoe.brand() %></a></li>
+
+  <% end %>
+
+</ul>
+
+<% end %>
+
+<h3> Add a Shoe: </h3>
+<form action="/shoes" method="post">
+  <label for="shoe_name">Shoe Name:  </label>
+  <input type="text" name="shoe_name" id="shoe_name">
+  <button type="submit">Add Shoe</button>
+</form>

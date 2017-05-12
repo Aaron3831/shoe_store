@@ -77,3 +77,23 @@ post ('/shoes/:id/prices') do
   @shoe.prices.push(price)
   redirect("/shoes/".concat(@shoe.id.to_s))
 end
+
+get("/stores/:id/edit") do
+  @store = Store.find(params.fetch("id").to_i())
+  erb(:store_edit)
+end
+
+patch("/stores/:id") do
+  name = params.fetch("store_name")
+  @store = Store.find(params.fetch("id").to_i())
+  @store.update({:title => name})
+  @shoes = Shoe.all()
+  erb(:store)
+end
+
+delete("/stores/:id") do
+  @store = Store.find(params.fetch("id").to_i())
+  @store.delete()
+  @stores = Store.all()
+  erb(:index)
+end

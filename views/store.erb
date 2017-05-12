@@ -1,5 +1,8 @@
 <h2> <%= @store.title() %></h2>
 <hr>
+<br>
+
+<p><a href="/stores/<%= @store.id() %>/edit">Edit <%= @store.title %> store</a></p>
 
 <% if @store.shoes.any? %>
   <h3>Here are the shoes currently carried in this store:</h3>

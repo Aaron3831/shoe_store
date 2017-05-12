@@ -4,9 +4,11 @@ class Shoe < ActiveRecord::Base
   has_many :prices, through: :costs
   has_many :stores, through: :franchises
 
-  validates(:brand, {:presence => true, :length => { :maximum => 100 }})
+  validates(:brand, {:uniqueness => true, :presence => true, :length => { :maximum => 100 }})
 
   validates(:brand, :presence => true)
+
+  validates :brand, uniqueness: { case_sensitive: false }
 
   before_save(:capitalize_brand)
 

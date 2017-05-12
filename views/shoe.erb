@@ -23,7 +23,7 @@
   <h3>Here are the prices for this shoe:</h3>
   <ul>
     <% @shoe.prices.each() do |cost| %>
-      <li><%= cost.total %></li>
+      <li><%= cost.total.to_s.prepend("$") %></li>
     <% end %>
   </ul>
 

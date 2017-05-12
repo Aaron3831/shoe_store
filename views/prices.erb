@@ -13,7 +13,7 @@
 
   <% @prices.each() do |price| %>
 
-  <li><%= price.total() %></li>
+  <li><%= price.total().to_s.prepend("$") %></li>
 
   <% end %>
 

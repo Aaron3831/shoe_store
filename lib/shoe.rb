@@ -6,6 +6,8 @@ class Shoe < ActiveRecord::Base
 
   validates(:brand, {:presence => true, :length => { :maximum => 100 }})
 
+  validates(:brand, :presence => true)
+
   before_save(:capitalize_brand)
 
   scope(:not_done, -> do

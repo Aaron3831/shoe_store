@@ -1,0 +1,31 @@
+<h2> <%= @store.title() %></h2>
+<hr>
+
+<% if @store.shoes.any? %>
+  <h3>Here are the shoes currently carried in this store:</h3>
+  <ul>
+    <% @store.shoes.each() do |franchise| %>
+      <li><%= franchise.brand %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+    <p><strong>There are currently no shoes with this store title.</strong></p>
+    <br>
+
+<% end %>
+
+<p>Add a shoe associated with this store:<p>
+<form id="add_shoe_id" action="/stores/<%= @store.id() %>/shoes" method="post">
+  <input type="hidden" name="store_id" id="store_id" value="<%= @store.id() %>">
+  <label for="shoe_id">Select a shoe:  </label>
+    <br>
+  <select id="shoe_id" name="shoe_id">
+    <option value=""></option>
+    <% @shoes.each() do |shoe| %>
+      <option value="<%= shoe.id() %>"><%= shoe.brand() %></option>
+    <% end %>
+  </select>
+  <button type="submit">Submit</button>
+</form>

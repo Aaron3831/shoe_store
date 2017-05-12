@@ -1,11 +1,11 @@
-<h2> <%= @shoe.name() %></h2>
+<h2> <%= @shoe.brand() %></h2>
 <hr>
 
 <% if @shoe.stores.any? %>
-  <h3>Here are the stores currently in this shoe:</h3>
+  <h3>Here are the stores currently carrying this shoe:</h3>
   <ul>
     <% @shoe.stores.each() do |franchise| %>
-      <li><%= franchise.name %></li>
+      <li><%= franchise.title %></li>
     <% end %>
   </ul>
 
@@ -16,14 +16,14 @@
 
 <% end %>
 
-<h2>  Tags:</h2>
+<h2>  Prices:</h2>
 <hr>
 
 <% if @shoe.prices.any? %>
-  <h3>Here are the prices currently in this shoe:</h3>
+  <h3>Here are the prices for this shoe:</h3>
   <ul>
     <% @shoe.prices.each() do |cost| %>
-      <li><%= cost.name %></li>
+      <li><%= cost.to_i %></li>
     <% end %>
   </ul>
 
@@ -37,12 +37,12 @@
 <p>Add a store associated with this shoe:<p>
 <form id="add_store_id" action="/shoes/<%= @shoe.id() %>/stores" method="post">
   <input type="hidden" name="shoe_id" id="shoe_id" value="<%= @shoe.id() %>">
-  <label for="store_id">Select an store:  </label>
+  <label for="store_id">Select a store:  </label>
     <br>
   <select id="store_id" name="store_id">
     <option value=""></option>
     <% @stores.each() do |store| %>
-      <option value="<%= store.id() %>"><%= store.name() %></option>
+      <option value="<%= store.id() %>"><%= store.title() %></option>
     <% end %>
   </select>
   <button type="submit">Submit</button>
@@ -56,7 +56,7 @@
   <select id="price_id" name="price_id">
     <option value=""></option>
     <% @prices.each() do |price| %>
-      <option value="<%= price.id() %>"><%= price.name() %></option>
+      <option value="<%= price.id() %>"><%= price.to_i() %></option>
     <% end %>
   </select>
   <button type="submit">Submit</button>

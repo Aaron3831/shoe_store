@@ -23,7 +23,7 @@
   <h3>Here are the prices for this shoe:</h3>
   <ul>
     <% @shoe.prices.each() do |cost| %>
-      <li><%= cost.to_i %></li>
+      <li><%= cost.to_s %></li>
     <% end %>
   </ul>
 
@@ -51,12 +51,12 @@
 <h3> Add a price: </h3>
 <form id="add_price_id" action="/shoes/<%= @shoe.id() %>/prices" method="post">
   <input type="hidden" name="shoe_id" id="shoe_id" value="<%= @shoe.id() %>">
-  <label for="price_id">Select a price:  </label>
+  <label for="price_id">Enter a price:  </label>
     <br>
   <select id="price_id" name="price_id">
-    <option value=""></option>
+    <option value="0"></option>
     <% @prices.each() do |price| %>
-      <option value="<%= price.id() %>"><%= price.to_i() %></option>
+      <option value="<%= price.id() %>"><%= price.to_s() %></option>
     <% end %>
   </select>
   <button type="submit">Submit</button>

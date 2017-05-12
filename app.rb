@@ -10,12 +10,14 @@ end
 
 get ('/shoes') do
   @shoes = Shoe.all()
+  @prices = Price.all()
   erb(:shoes)
 end
 
 post ('/shoes') do
-  shoe_name = params.fetch('shoe_name')
+  shoe_name = params.fetch('shoe_id')
   @shoes = Shoe.create({:brand => shoe_name})
+  @prices = Price.all()
   redirect("/shoes")
 end
 
@@ -56,4 +58,11 @@ post ('/stores') do
   store_name = params.fetch('store_name')
   @stores = Store.create({:title => store_name})
   redirect("/stores")
+end
+
+post ('/shoes/:id/prices') do
+  @shoe = Shoe.find(params.fetch("id").to_i())
+  price = Price.find(params[:price_id].to_i)
+  @shoe.prices.push(price)
+  redirect("/shoes/".concat(@shoe.id.to_s))
 end

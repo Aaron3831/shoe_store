@@ -1,0 +1,29 @@
+<h2>Prices</h2>
+<hr>
+<br>
+
+<% if @prices == [] %>
+
+<p>There are currently no prices in the database</p>
+
+<% else %>
+
+<p>All Prices</p>
+<ul>
+
+  <% @prices.each() do |price| %>
+
+  <li><%= price.total() %></li>
+
+  <% end %>
+
+</ul>
+
+<% end %>
+
+<h3> Add an price: </h3>
+<form action="/prices" method="post">
+  <label for="price_name">Price:  </label>
+  <input type="text" name="price_name" id="price_name">
+  <button type="submit">Add Price</button>
+</form>

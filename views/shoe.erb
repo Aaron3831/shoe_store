@@ -23,7 +23,7 @@
   <h3>Here are the prices for this shoe:</h3>
   <ul>
     <% @shoe.prices.each() do |cost| %>
-      <li><%= cost.to_s %></li>
+      <li><%= cost.total %></li>
     <% end %>
   </ul>
 
@@ -56,7 +56,7 @@
   <select id="price_id" name="price_id">
     <option value="0"></option>
     <% @prices.each() do |price| %>
-      <option value="<%= price.id() %>"><%= price.to_s() %></option>
+      <option value="<%= price.id() %>"><%= price.total() %></option>
     <% end %>
   </select>
   <button type="submit">Submit</button>

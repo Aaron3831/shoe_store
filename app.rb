@@ -60,6 +60,17 @@ post ('/stores') do
   redirect("/stores")
 end
 
+get ('/prices') do
+  @prices = Price.all()
+  erb(:prices)
+end
+
+post ('/prices') do
+  price_name = params.fetch('price_name')
+  @prices = Price.create({:total => price_name})
+  redirect("/prices")
+end
+
 post ('/shoes/:id/prices') do
   @shoe = Shoe.find(params.fetch("id").to_i())
   price = Price.find(params[:price_id].to_i)

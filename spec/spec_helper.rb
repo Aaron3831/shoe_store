@@ -1,12 +1,24 @@
 ENV['RACK_ENV'] = 'test'
 
-require("bundler/setup")
-Bundler.require(:default, :test)
-set(:root, Dir.pwd())
+require("rspec")
+require("pg")
+require("sinatra/activerecord")
+require("./lib/store")
+require("./lib/shoe")
+require("./lib/price")
+require("./lib/franchise")
+require("./lib/cost")
 
-require('capybara/rspec')
-Capybara.app = Sinatra::Application
-set(:show_exceptions, false)
-require('./app')
-
-Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
+RSpec.configure do |config|
+  config.after(:each) do
+    Shoe.all().each do |shoe|
+      shoe.destroy()
+    end
+    Store.all().each do |store|
+      store.destroy()
+    end
+    Price.all().each do |price|
+      price.destroy()
+    end
+  end
+end
